@@ -3,6 +3,7 @@ Da li parte un timer di 30 secondi.
 Dopo 30 secondi l'utente deve inserire, uno alla volta, i numeri che ha visto precedentemente, tramite il prompt().
 Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei numeri da indovinare sono stati individuati. */
 let items = 5;
+let numbersUser = [];
 
 function randomNumbers (min, max){
     let numbers = [];
@@ -16,42 +17,26 @@ function randomNumbers (min, max){
 }
 let arrayNumbers = randomNumbers(1,100);
 
-alert("Numeri casuali sono: " + arrayNumbers);
+alert("Numeri casuali sono: " + arrayNumbers );
 /* --------------------------------------------------------------------------------------------- */
-let confirm = false
-if (window.confirm("Da ora hai 30 secondi per indovinare i numeri")) {
-    confirm = true;
-    revereCount();
-  }
-  console.log(revereCount());
 
-/* --------------------------------------------------------------------------------------------- */
-function revereCount() {
-    let timer = 30;
-     clock = setInterval(function() {
-        timer--;
-        console.log(timer)
-    },1000)
+setTimeout(function(){
+    for (let i = 0; i < arrayNumbers.length; i++) {
+    let userChoice = parseInt(prompt("Inserisci i numeri che hai visto precedentemente, se sbagli perdi!"));
     
-} 
-/* --------------------------------------------------------------------------------------------- */
-function userNumber() {
-    let numbersUser = [];
-    for (i = 1; i < arrayNumbers.length; i++) {
-        let userChoice = parseInt(prompt("Inserisci il numero"));
-        if (arrayNumbers.includes(userChoice)) {
-            numbersUser.push(userChoice);
-            continue;
+    if (arrayNumbers.includes(userChoice)) {
+        numbersUser.push(userChoice);
+        console.log(numbersUser);
 
-        } else {
-            alert("Hai perso, i numeri inseriti sono: " + numbersUser);
-            break;
-            
-        }
-       
-        
+    } else {
+        numbersUser.push(userChoice);
+        alert("Hai perso, i numeri inseriti sono: " + numbersUser);
+        break;
+    
     }
-
+    
 }
+},1000);
+/* --------------------------------------------------------------------------------------------- */
 
 
